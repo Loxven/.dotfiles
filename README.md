@@ -1,4 +1,4 @@
-## Configuração do editor Vim.
+## Configuraçãos do bash e Vim.
 Fortemente baseado nos repositórios do @LeandoSNunes, https://github.com/LeandroSNunes/vim-files e https://github.com/LeandroSNunes/dotfiles
 
 ### Plugins Instalados
