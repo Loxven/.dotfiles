@@ -264,7 +264,6 @@ cnoreabbrev Q q
 cnoreabbrev Qall qall
 
 " NERDTree configuration #####
-let NERDTreeShowHidden=1
 let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
 let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
@@ -274,7 +273,7 @@ let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeWinSize = 50
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
-noremap <F3> :NERDTreeToggle<CR>
+noremap <C-n> :NERDTreeToggle<CR>
 "###########################
 
 " grep.vim
@@ -409,6 +408,7 @@ if executable('ag')
 	let g:ctrlp_use_caching = 0
 endif
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+noremap <C-p> :CtrlP<CR>
 noremap <leader>b :CtrlPBuffer<CR>
 let g:ctrlp_map = '<leader>e'
 let g:ctrlp_open_new_file = 'r'
