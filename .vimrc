@@ -43,6 +43,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
 Plug 'Yggdroot/indentLine'
+Plug 'valloric/youcompleteme'
 Plug 'avelino/vim-bootstrap-updater'
 
 let g:make = 'gmake'
@@ -273,7 +274,7 @@ let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeWinSize = 50
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
-noremap <C-n> :NERDTreeToggle<CR>
+noremap <C-n> :NERDTreeTabsToggle<CR>
 "###########################
 
 " grep.vim
