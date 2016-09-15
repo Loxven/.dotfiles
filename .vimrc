@@ -2,7 +2,7 @@
 "" Vim-PLug core
 "*****************************************************************************
 if has('vim_starting')
-	set nocompatible               " Be iMproved
+  set nocompatible               " Be iMproved
 endif
 
 let vimplug_exists=expand('~/.vim/autoload/plug.vim')
@@ -11,14 +11,14 @@ let g:vim_bootstrap_langs = "javascript,ruby,elixir,python,c,php,html"
 let g:vim_bootstrap_editor = "vim"				" nvim or vim
 
 if !filereadable(vimplug_exists)
-	echo "Installing Vim-Plug..."
-	echo ""
-	silent !\curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	let g:not_finish_vimplug = "yes"
+  echo "Installing Vim-Plug..."
+  echo ""
+  silent !\curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  let g:not_finish_vimplug = "yes"
 
-	" Run shell script if exist on custom select language
+  " Run shell script if exist on custom select language
 
-	autocmd VimEnter * PlugInstall
+  autocmd VimEnter * PlugInstall
 endif
 
 " Required:
@@ -45,10 +45,11 @@ Plug 'scrooloose/syntastic'
 Plug 'Yggdroot/indentLine'
 Plug 'valloric/youcompleteme'
 Plug 'avelino/vim-bootstrap-updater'
+Plug 'junegunn/vim-easy-align'
 
 let g:make = 'gmake'
 if system('uname -o') =~ '^GNU/'
-	let g:make = 'make'
+  let g:make = 'make'
 endif
 Plug 'Shougo/vimproc.vim', {'do': g:make}
 
@@ -57,13 +58,13 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
 if v:version >= 703
-	Plug 'Shougo/vimshell.vim'
+  Plug 'Shougo/vimshell.vim'
 endif
 
 if v:version >= 704
-	"" Snippets
-	Plug 'SirVer/ultisnips'
-	Plug 'FelikZ/ctrlp-py-matcher'
+  "" Snippets
+  Plug 'SirVer/ultisnips'
+  Plug 'FelikZ/ctrlp-py-matcher'
 endif
 
 Plug 'honza/vim-snippets'
@@ -87,6 +88,7 @@ Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-haml'
 Plug 'mattn/emmet-vim'
 
+"" Elixir Bundle
 Plug 'elixir-lang/vim-elixir'
 Plug 'carlosgaldino/elixir-snippets'
 
@@ -101,7 +103,7 @@ Plug 'ecomba/vim-ruby-refactoring'
 
 "" Include user's extra bundle
 if filereadable(expand("~/.vimrc.local.bundles"))
-	source ~/.vimrc.local.bundles
+  source ~/.vimrc.local.bundles
 endif
 
 call plug#end()
@@ -113,58 +115,31 @@ filetype plugin indent on
 "*****************************************************************************
 "" Basic Setup
 "*****************************************************************************"
-"" Encoding
+set nocompatible
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
-
-"" Fix backspace indent
+set history=1000                "Store lots of :cmdline history
+set mouse=nvr
 set backspace=indent,eol,start  "Allow backspace in insert mode
-
-"" Tabs. May be overriten by autocmd rules
+set number                      "Line numbers are good
+set showcmd                     "Show incomplete cmds down the bottom
+set showmode                    "Show current mode down the bottom
+set gcr=a:blinkon0              "Disable cursor blink
+set visualbell                  "No sounds
+set autoread                    "Reload files changed outside vim
+set noswapfile
+set nobackup
+set nowb
+set autoindent
+set smartindent
 set smarttab
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
 set expandtab
 set nowrap
-
-"" Map leader to ,
-let mapleader=','
-
-"" Enable hidden buffers
-set hidden
-
-"" Searching
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-
-"" Encoding
-set bomb
-set binary
-set ttyfast
-
-"" Directories for swp files
-set nobackup
-set noswapfile
-
-set fileformats=unix,dos,mac
-set showcmd
-set shell=/bin/sh
-
-"" Other configurations
-set history=1000                "Store lots of :cmdline history
-set mouse=nvr
-set number                      "Line numbers are good
-set gcr=a:blinkon0              "Disable cursor blink
-set visualbell                  "No sounds
-set autoread                    "Reload files changed outside vim
-set nowb
-set autoindent
-set smartindent
-set t_co=256
+set t_Co=256
 set showmatch
 set foldmethod=manual
 set clipboard+=unnamed
@@ -184,7 +159,7 @@ set number
 
 let no_buffers_menu=1
 if !exists('g:not_finish_vimplug')
-	colorscheme molokai
+  colorscheme molokai
 endif
 
 set mousemodel=popup
@@ -193,32 +168,32 @@ set guioptions=egmrti
 set gfn=Monospace\ 10
 
 if has("gui_running")
-	if has("gui_mac") || has("gui_macvim")
-		set guifont=Menlo:h12
-		set transparency=7
-	endif
+  if has("gui_mac") || has("gui_macvim")
+    set guifont=Menlo:h12
+    set transparency=7
+  endif
 else
-	let g:CSApprox_loaded = 1
+  let g:CSApprox_loaded = 1
 
-	" IndentLine
-	let g:indentLine_enabled = 1
-	let g:indentLine_concealcursor = 0
-	let g:indentLine_char = '┆'
-	let g:indentLine_faster = 1
+  " IndentLine
+  let g:indentLine_enabled = 1
+  let g:indentLine_concealcursor = 0
+  let g:indentLine_char = '┆'
+  let g:indentLine_faster = 1
 
 
-	if $COLORTERM == 'gnome-terminal'
-		set term=gnome-256color
-	else
-		if $TERM == 'xterm'
-			set term=xterm-256color
-		endif
-	endif
+  if $COLORTERM == 'gnome-terminal'
+    set term=gnome-256color
+  else
+    if $TERM == 'xterm'
+      set term=xterm-256color
+    endif
+  endif
 
 endif
 
 if &term =~ '256color'
-	set t_ut=
+  set t_ut=
 endif
 
 "" Disable the blinking cursor.
@@ -239,7 +214,7 @@ set titlestring=%F
 set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 
 if exists("*fugitive#statusline")
-	set statusline+=%{fugitive#statusline()}
+  set statusline+=%{fugitive#statusline()}
 endif
 
 " vim-airline
@@ -289,20 +264,20 @@ let g:vimshell_prompt =  '$ '
 
 " terminal emulation
 if g:vim_bootstrap_editor == 'nvim'
-	nnoremap <silent> <leader>sh :terminal<CR>
+  nnoremap <silent> <leader>sh :terminal<CR>
 else
-	nnoremap <silent> <leader>sh :VimShellCreate<CR>
+  nnoremap <silent> <leader>sh :VimShellCreate<CR>
 endif
 
 "*****************************************************************************
 "" Functions
 "*****************************************************************************
 if !exists('*s:setupWrapping')
-	function s:setupWrapping()
-		set wrap
-		set wm=2
-		set textwidth=79
-	endfunction
+  function s:setupWrapping()
+    set wrap
+    set wm=2
+    set textwidth=79
+  endfunction
 endif
 
 "*****************************************************************************
@@ -310,27 +285,27 @@ endif
 "*****************************************************************************
 "" The PC is fast enough, do syntax highlight syncing from start
 augroup vimrc-sync-fromstart
-	autocmd!
-	autocmd BufEnter * :syntax sync fromstart
+  autocmd!
+  autocmd BufEnter * :syntax sync fromstart
 augroup END
 
 "" Remember cursor position
 augroup vimrc-remember-cursor-position
-	autocmd!
-	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
 
 "" txt
 augroup vimrc-wrapping
-	autocmd!
-	autocmd BufRead,BufNewFile *.txt call s:setupWrapping()
+  autocmd!
+  autocmd BufRead,BufNewFile *.txt call s:setupWrapping()
 augroup END
 
 "" make/cmake
 augroup vimrc-make-cmake
-	autocmd!
-	autocmd FileType make setlocal noexpandtab
-	autocmd BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
+  autocmd!
+  autocmd FileType make setlocal noexpandtab
+  autocmd BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
 augroup END
 
 " Remove espaço no final da linha ##################
@@ -386,9 +361,9 @@ let g:ctrlp_use_caching = 1
 
 " The Silver Searcher
 if executable('ag')
-	set grepprg=ag\ --nogroup\ --nocolor
-	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-	let g:ctrlp_use_caching = 0
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
 endif
 
 "CtrlP configuration ######
@@ -399,14 +374,14 @@ let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:20'
 let g:ctrlp_by_filename = 0
 
 if executable('ag')
-	" Use Ag over Grep
-	set grepprg=ag\ --nogroup\ --nocolor
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
 
-	" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
-	" ag is fast enough that CtrlP doesn't need to cache
-	let g:ctrlp_use_caching = 0
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
 endif
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 noremap <C-p> :CtrlP<CR>
@@ -426,8 +401,8 @@ au FileType json setlocal equalprg=python\ -m\ json.tool
 "#############################
 
 " snippets
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<Shift-tab>"
+let g:UltiSnipsJumpForwardTrigger="<Shift-tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsEditSplit="vertical"
 
@@ -449,7 +424,7 @@ set novisualbell t_vb=
 
 "" Copy/Paste/Cut
 if has('unnamedplus')
-	set clipboard=unnamed,unnamedplus
+  set clipboard=unnamed,unnamedplus
 endif
 
 noremap YY "+y<CR>
@@ -457,9 +432,9 @@ noremap <leader>p "+gP<CR>
 noremap XX "+x<CR>
 
 if has('macunix')
-	" pbcopy for OSX copy/paste
-	vmap <C-x> :!pbcopy<CR>
-	vmap <C-c> :w !pbcopy<CR><CR>
+  " pbcopy for OSX copy/paste
+  vmap <C-x> :!pbcopy<CR>
+  vmap <C-c> :w !pbcopy<CR><CR>
 endif
 
 "" Buffer nav
@@ -495,10 +470,10 @@ nnoremap <Leader>o :.Gbrowse<CR>
 
 " vim-python
 augroup vimrc-python
-	autocmd!
-	autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
-				\ formatoptions+=croq softtabstop=4 smartindent
-				\ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+  autocmd!
+  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
+        \ formatoptions+=croq softtabstop=4 smartindent
+        \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 augroup END
 
 " jedi-vim
@@ -523,8 +498,8 @@ let g:javascript_enable_domhtmlcss = 1
 
 " vim-javascript
 augroup vimrc-javascript
-	autocmd!
-	autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab softtabstop=4 smartindent
+  autocmd!
+  autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab softtabstop=4 smartindent
 augroup END
 
 let g:rubycomplete_buffer_loading = 1
@@ -532,21 +507,21 @@ let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
 
 augroup vimrc-ruby
-	autocmd!
-	autocmd BufNewFile,BufRead *.rb,*.rbw,*.gemspec setlocal filetype=ruby
-	autocmd FileType ruby set tabstop=2|set shiftwidth=2|set expandtab softtabstop=2 smartindent
+  autocmd!
+  autocmd BufNewFile,BufRead *.rb,*.rbw,*.gemspec setlocal filetype=ruby
+  autocmd FileType ruby set tabstop=2|set shiftwidth=2|set expandtab softtabstop=2 smartindent
 augroup END
 
 let g:tagbar_type_ruby = {
-			\ 'kinds' : [
-			\ 'm:modules',
-			\ 'c:classes',
-			\ 'd:describes',
-			\ 'C:contexts',
-			\ 'f:methods',
-			\ 'F:singleton methods'
-			\ ]
-			\ }
+      \ 'kinds' : [
+      \ 'm:modules',
+      \ 'c:classes',
+      \ 'd:describes',
+      \ 'C:contexts',
+      \ 'f:methods',
+      \ 'F:singleton methods'
+      \ ]
+      \ }
 
 " RSpec.vim mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
@@ -567,8 +542,15 @@ vnoremap <leader>rem  :RExtractMethod<cr>
 
 "" Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
-	source ~/.vimrc.local
+  source ~/.vimrc.local
 endif
+
+"" EasyAlign
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 "*****************************************************************************
 "" Convenience variables
@@ -576,36 +558,36 @@ endif
 
 " vim-airline
 if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
 
 if !exists('g:airline_powerline_fonts')
-	let g:airline#extensions#tabline#left_sep = ' '
-	let g:airline#extensions#tabline#left_alt_sep = '|'
-	let g:airline_left_sep          = '▶'
-	let g:airline_left_alt_sep      = '»'
-	let g:airline_right_sep         = '◀'
-	let g:airline_right_alt_sep     = '«'
-	let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
-	let g:airline#extensions#readonly#symbol   = '⊘'
-	let g:airline#extensions#linecolumn#prefix = '¶'
-	let g:airline#extensions#paste#symbol      = 'ρ'
-	let g:airline_symbols.linenr    = '␊'
-	let g:airline_symbols.branch    = '⎇'
-	let g:airline_symbols.paste     = 'ρ'
-	let g:airline_symbols.paste     = 'Þ'
-	let g:airline_symbols.paste     = '∥'
-	let g:airline_symbols.whitespace = 'Ξ'
+  let g:airline#extensions#tabline#left_sep = ' '
+  let g:airline#extensions#tabline#left_alt_sep = '|'
+  let g:airline_left_sep          = '▶'
+  let g:airline_left_alt_sep      = '»'
+  let g:airline_right_sep         = '◀'
+  let g:airline_right_alt_sep     = '«'
+  let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
+  let g:airline#extensions#readonly#symbol   = '⊘'
+  let g:airline#extensions#linecolumn#prefix = '¶'
+  let g:airline#extensions#paste#symbol      = 'ρ'
+  let g:airline_symbols.linenr    = '␊'
+  let g:airline_symbols.branch    = '⎇'
+  let g:airline_symbols.paste     = 'ρ'
+  let g:airline_symbols.paste     = 'Þ'
+  let g:airline_symbols.paste     = '∥'
+  let g:airline_symbols.whitespace = 'Ξ'
 else
-	let g:airline#extensions#tabline#left_sep = ''
-	let g:airline#extensions#tabline#left_alt_sep = ''
+  let g:airline#extensions#tabline#left_sep = ''
+  let g:airline#extensions#tabline#left_alt_sep = ''
 
-	" powerline symbols
-	let g:airline_left_sep = ''
-	let g:airline_left_alt_sep = ''
-	let g:airline_right_sep = ''
-	let g:airline_right_alt_sep = ''
-	let g:airline_symbols.branch = ''
-	let g:airline_symbols.readonly = ''
-	let g:airline_symbols.linenr = ''
+  " powerline symbols
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = ''
 endif
