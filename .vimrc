@@ -43,7 +43,6 @@ Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
 Plug 'Yggdroot/indentLine'
-Plug 'valloric/youcompleteme'
 Plug 'avelino/vim-bootstrap-updater'
 Plug 'junegunn/vim-easy-align'
 
